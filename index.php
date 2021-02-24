@@ -62,31 +62,22 @@ function phpAlert($msg)
                 </form>
 
                 <?php
-                if (isset($_POST["denominacion"])) {
+                if (isset($_POST["addedit"])) {
                     $id = $_POST["idEditorial"];
                     $deno = $_POST["denominacion"];
                     
+                    if ($id == null || $deno == null) {
+                        phpAlert("No se puede crear una editorial sin [ID]] ni [Denominacion].");
+                    }else {
                         $Mesaje = "";
                         $n = new nodoEditorial($id, $deno);
                         //$_SESSION["multi"]->agregarEditorial($n);
                        $_SESSION["multi"]->agregarEditorial($n);
 //                        $p = $_SESSION["multi"]->getPTR();
                        echo $_SESSION["multi"]->visualizarLista();
-                     /*  
-                       // echo "".$p->getIdEditorial();
-                        //echo "".$p->getDenominacion();
-                        if ($p == null) { // si el nodo 
-                            return "Esta vacia";
-                        }else{
-                            while($p != null){
-                                $Mesaje = $Mesaje . "<br>- ".$p->getIdEditorial();
-                                $p  = $p ->getSig();
-                            }
-                        }
-                        echo $Mesaje;*/                        
-                    
-                }else{
-                    phpAlert("No se puede crear una editorial sin [ID]] ni [Denominacion].");
+                     /*  */
+                    }
+
                 }
 
                 ?>
