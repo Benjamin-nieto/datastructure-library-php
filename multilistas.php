@@ -24,20 +24,16 @@ class Multilista
     // 
     function agregarNodoPrincio($P)
     {
-        $mjs = "";
         // si el primero es nulo entonces final es igual al nodo pasado
         if ($this->ptr == null) {
             $mjs = 'esta vacio';
             # code...
             $this->final = $P;
         } else {
-            # code... 
             // el primero se mueve al siguiente del nodo nuevo (agregado)
             $P->setSig($this->ptr);
         }
-        // entonces el primero (p) pasa a ser el primero
         $this->ptr = $P;
-        return "".$mjs;
     }
 
 
@@ -219,4 +215,24 @@ class Multilista
 
         return "$Mesaje";
     }
+
+    function crearCombo()
+    {
+        $P = $this->ptr;
+        $Mesaje = ""; // Lista vacia
+        if ($P == null) { // si el nodo 
+            return "Esta vacia";
+        } else {
+            # code...
+            while ($P != null) {
+
+                # code...
+                $Mesaje = $Mesaje . "<br>- " . $P->getIdEditorial() . " Denominacion: " . $P->getDenominacion();
+                $P = $P->getSig();
+            }
+        }
+
+        return "$Mesaje";
+    }
+
 }

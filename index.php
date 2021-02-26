@@ -34,7 +34,7 @@ function phpAlert($msg)
     <title>Biblioteca C.U.C</title>
 </head>
 
-<body>
+<body style="background: rgb(70 38 23 / 100%);">
     <div class="gradient-background-color">
         <div class="mdl-grid ">
             <div class="mdl-cell mdl-cell--8-col" style="display: flex !important;">
@@ -65,19 +65,14 @@ function phpAlert($msg)
                 if (isset($_POST["addedit"])) {
                     $id = $_POST["idEditorial"];
                     $deno = $_POST["denominacion"];
-                    
+
                     if ($id == null || $deno == null) {
                         phpAlert("No se puede crear una editorial sin [ID]] ni [Denominacion].");
-                    }else {
-                        $Mesaje = "";
+                    } else {
                         $n = new nodoEditorial($id, $deno);
-                        //$_SESSION["multi"]->agregarEditorial($n);
-                       $_SESSION["multi"]->agregarEditorial($n);
-//                        $p = $_SESSION["multi"]->getPTR();
-                       echo $_SESSION["multi"]->visualizarLista();
-                     /*  */
+                        $_SESSION["multi"]->agregarEditorial($n);
+                        echo $_SESSION["multi"]->visualizarLista();
                     }
-
                 }
 
                 ?>
@@ -109,6 +104,15 @@ function phpAlert($msg)
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" id="cant">
                             <label class="mdl-textfield__label" for="nat">Cantidad</label>
+                        </div>
+                        <div style="height: 40px; display: flex;">
+                        <p style="margin-right: 15px;">Editorial:</p>
+                            <select id="editoriales" name="cars" class="select-editoriales">
+                                <option value="volvo">Volvo</option> 
+                              <!--  <option value="saab">Saab</option>
+                                <option value="fiat" selected>Fiat</option>
+                                <option value="audi">Audi</option>-->
+                            </select>
                         </div>
                         <input type="submit" value="Crear Libro" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                     </form>

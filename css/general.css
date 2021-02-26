@@ -1,4 +1,17 @@
 .gradient-background-color {
     background: rgb(36, 19, 11);
-    background: linear-gradient(0deg, rgba(36, 19, 11, 1) 0%, rgba(107, 93, 82, 1) 21%, rgba(129, 117, 105, 1) 37%, rgba(148, 136, 124, 1) 47%, rgba(255, 248, 233, 1) 100%);
+    background: linear-gradient( 0deg, rgb(70 38 23 / 67%) 0%, rgba(107, 93, 82, 1) 21%, rgba(129, 117, 105, 1) 37%, rgba(148, 136, 124, 1) 47%, rgba(255, 248, 233, 1) 100%);
+}
+
+.select-editoriales {
+    width: 70%;
+    height: 81%;
+    border-radius: 17pc;
+    outline: none;
+}
+
+.mdl-button--accent.mdl-button--accent.mdl-button--raised,
+.mdl-button--accent.mdl-button--accent.mdl-button--fab {
+    color: rgb(255, 255, 255);
+    background-color: rgb(152, 18, 18);
 }
