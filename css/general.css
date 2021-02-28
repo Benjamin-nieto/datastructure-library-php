@@ -1,3 +1,11 @@
+/* Css General
+- gradient-background-color: css del body 
+- select-editoriales: select de las editorial
+- .mdl-button--accent.mdl-button--accent.mdl-button--raised,
+.mdl-button--accent.mdl-button--accent.mdl-button--fab:  se modifico los colores de los botones 
+- inventory-box: div que muestra la multilista
+*/
+
 .gradient-background-color {
     background: rgb(36, 19, 11);
     background: linear-gradient( 0deg, rgb(70 38 23 / 67%) 0%, rgba(107, 93, 82, 1) 21%, rgba(129, 117, 105, 1) 37%, rgba(148, 136, 124, 1) 47%, rgba(255, 248, 233, 1) 100%);
@@ -14,4 +22,50 @@
 .mdl-button--accent.mdl-button--accent.mdl-button--fab {
     color: rgb(255, 255, 255);
     background-color: rgb(152, 18, 18);
+}
+
+a {
+    color: rgb(193, 12, 12) !important;
+    font-weight: 500;
+    text-decoration-line: none !important;
+}
+
+.inventory-box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 12px;
+    padding-bottom: 11px;
+    border-color: #797979;
+}
+
+.spam-search {
+    /*     z-index: 1000;
+    background-color: rgb(152, 18, 18);
+    width: 200px;
+    height: 100px; */
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background: rgba(33, 41, 52, 0.644)!important;
+    grid-template: 1fr;
+    justify-content: center;
+    align-items: center;
+    display: block;
+}
+
+.div-reverse-direction {
+    display: flex;
+    align-content: flex-end;
+    flex-direction: row-reverse;
+}
+
+.text-inventory {
+    margin: 0px !important;
+    background-color: #9c948b;
 }
