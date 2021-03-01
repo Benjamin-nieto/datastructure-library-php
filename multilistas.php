@@ -364,12 +364,23 @@ class Multilista
 
         //$p = $this->ptr;
         $cont = 0;
-
+        $cant = 0;
         $dato = $this->editorialVacia($editorial);
         if ($dato == true) {
-            return "editorial vacia";
+            return "Editorial sin libros para contar";
         } else {
-            return "editorial llena";
+            $r = $editorial->getAbajo();
+            while($r != null){
+                if ($r->getIdLibro() != null) {
+                  $cont = $cont + 1;
+                  $cant = $cant + $r->getCant();
+
+                }
+                $r = $r->getAbajo();
+            }
+            if ($cont != 0) {
+                return "La cantidad de libros distintos de esta editorial es ".$cont." la suma de todas las cantidades de los libros en inventario es ".$cant;
+            }
         }
         
         

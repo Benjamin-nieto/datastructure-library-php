@@ -69,3 +69,17 @@ a {
     margin: 0px !important;
     background-color: #9c948b;
 }
+
+.reformat-option-button{
+    width: 80%;
+    border-radius: 4px !important;
+    text-align: left;
+    padding-top: 5px;
+    padding-left: 4px;
+    background: #981212;
+    color: white;
+}
+
+.mdl-button:hover.reformat-option-button {
+    background-color: #981212;
+}

@@ -45,8 +45,9 @@ function phpAlert($msg)
             <div class="mdl-cell mdl-cell--2-col"></div>
             <div class="mdl-cell mdl-cell--2-col div-reverse-direction">
                 <!-- Right aligned menu below button -->
-                <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">more_vert</i>
+                <button id="demo-menu-lower-right" class="reformat-option-button mdl-button mdl-js-button mdl-button--icon">
+                <p style="padding-left: 10%;">Opciones</p>
+                    <i class="material-icons" style="padding-left:34%;">more_vert</i>
                 </button>
 
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
@@ -393,7 +394,7 @@ function phpAlert($msg)
                                    </div>
                                </div>              
                                <div class="mdl-grid">
-                                   <form method="post">
+                                   <form method="post" style="width:50% !important;">
                                    <div style="height: 40px; display: flex;"> 
                                    <p style="margin-right: 15px;">Editorial:</p>
                                    <select id="select-cont-x-edit" name="select-cont-x-edit" class="select-editoriales">
