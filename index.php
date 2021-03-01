@@ -42,7 +42,12 @@ function phpAlert($msg)
                     <h1>Biblioteca C.U.C</h1>
                 </div> <img src="./img/logo.png" style="width:23%;">
             </div>
-            <div class="mdl-cell mdl-cell--2-col"></div>
+            <div class="mdl-cell mdl-cell--2-col">
+
+            <h5>Integrantes</h5>
+            <p>- Benjamin E. Nieto Garcia.</p>
+            <p>- Juan Jimenez Yancy.</p>
+            </div>
             <div class="mdl-cell mdl-cell--2-col div-reverse-direction">
                 <!-- Right aligned menu below button -->
                 <button id="demo-menu-lower-right" class="reformat-option-button mdl-button mdl-js-button mdl-button--icon">
