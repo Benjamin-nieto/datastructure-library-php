@@ -21,16 +21,12 @@ class Multilista
         return $this->ptr;
     }
 
-    // 
     function agregarNodoPrincio($P)
     {
-        // si el primero es nulo entonces final es igual al nodo pasado
         if ($this->ptr == null) {
             $mjs = 'esta vacio';
-            # code...
             $this->final = $P;
         } else {
-            // el primero se mueve al siguiente del nodo nuevo (agregado)
             $P->setSig($this->ptr);
         }
         $this->ptr = $P;
@@ -50,7 +46,6 @@ class Multilista
     }
     function buscarEditorial($i)
     {
-        // nodo editorial
         $p = $this->ptr;
         $encontrado = false;
 
@@ -66,7 +61,6 @@ class Multilista
 
     function editorialVacia($p)
     {
-        //p editorial a validar
         if ($p->getAbajo() == null) {
             return true;
         } else {
@@ -76,19 +70,15 @@ class Multilista
 
     function apuntarFinalEditorial($p)
     {
-        $r = $p->getAbajo(); // $p nodoLibro
+        $r = $p->getAbajo(); 
         while ($r->getAbajo() != null) {
             $r = $r->getAbajo();
         }
         return $r;
-        /* retornar el ultimo nodo de 
-        la sublista libro de la editorial */
     }
 
     function agregarLibro($p, $q)
     {
-        // p editorial
-        // q libros
         if ($this->editorialVacia($p)) {
             $p->setAbajo($q);
         } else {
@@ -99,13 +89,11 @@ class Multilista
 
     function buscarLibro($e, $l)
     {
-        //$e = idEditorial; $l = idLibro;
         $ne = $this->buscarEditorial($e);
-        ## NE = editorial buscada
         if ($ne === null) {
             return null;
         } else {
-            $r = $ne->getAbajo(); // nodolibro = abajo
+            $r = $ne->getAbajo(); 
             $encontrado = false;
             while ($r != null && $encontrado == false) {
                 if ($r->getIdlibro() === $l) {
@@ -130,7 +118,6 @@ class Multilista
         }
         return $msj;
     }
-    ### REVISAR Y VALIDAR CANTIDAD QUE SEAN SUMADAS O RESTADAS
     function actualizarInventario($ie, $il, $ca)
     {
         $nl = $this->buscarLibro($ie, $il);
@@ -141,7 +128,6 @@ class Multilista
             return true;
         }
     }
-
 
     function eliminarLibro($ie, $il)
     {
@@ -154,7 +140,6 @@ class Multilista
             $encontrado = false;
             while ($q != null && $encontrado == false) {
                 if ($q->getIdLibro() == $il) {
-                    # code...
                     $encontrado = true;
                 } else {
                     $ant = $q;
@@ -184,7 +169,6 @@ class Multilista
             return false;
         } else {
             if (!$this->editorialVacia($p)) {
-                // si la editorial  esta vacia
                 return false;
             } else {
                 if ($p == $this->ptr) {
@@ -203,7 +187,6 @@ class Multilista
                         $p->getSig()->setAnt($p->getAnt());
                     }
                 }
-                //
                 $p = null;
                 return true;
             }
@@ -217,7 +200,6 @@ class Multilista
             return "nulo";
         } else {
             if (!$this->editorialVacia($p)) {
-                // eliminar todos los libros
                 $p->setAbajo(null);
                 if ($p == $this->ptr) {
                     if ($p->getSig() === null) {
@@ -254,7 +236,6 @@ class Multilista
                         $p->getSig()->setAnt($p->getAnt());
                     }
                 }
-                //
                 $p = null;
                 return true;
             }
@@ -265,14 +246,11 @@ class Multilista
     function visualizarListaEditoriales()
     {
         $P = $this->ptr;
-        $Mesaje = ""; // Lista vacia
-        if ($P == null) { // si el nodo 
+        $Mesaje = ""; 
+        if ($P == null) { 
             return "Esta vacia";
         } else {
-            # code...
             while ($P != null) {
-
-                # code...
                 $Mesaje = $Mesaje . "<br>- " . $P->getIdEditorial() . " Denominacion: " . $P->getDenominacion();
                 $P = $P->getSig();
             }
@@ -283,8 +261,7 @@ class Multilista
 
     function crearCombo()
     {
-        $options = ""; // Lista vacia
-        //   $template = "<option value="null">null</option>";
+        $options = ""; 
         $p = $this->ptr;
 
         while ($p != null) {
@@ -298,19 +275,14 @@ class Multilista
     function visualizarListaCompleta()
     {
         $P = $this->ptr;
-        $Mesaje = ""; // Lista vacia
+        $Mesaje = ""; 
         $MesajeLibro = "";
-        if ($P == null) { // si el nodo 
+        if ($P == null) {  
             return "Esta vacia";
         } else {
-            # code...
             while ($P != null) {
-
-                # code...
                 $Mesaje = $Mesaje . '<br><p class="text-inventory">- ' . $P->getIdEditorial() . " Denominacion: " . $P->getDenominacion() . "</p>";
-
-
-                $r = $P->getAbajo(); // nodolibro = abajo
+                $r = $P->getAbajo(); 
                 while ($r != null) {
                     $MesajeLibro = $MesajeLibro . "&nbsp;&nbsp;&nbsp;&nbsp;-> id: " . $r->getIdLibro() . " titulo: " . $r->getTitulo() . " Autor: " . $r->getAutor() . " Pais: " . $r->getPais() . " Año: " . $r->getAnho() . " Cantidad " . $r->getCant() . "<br>";
                     $r = $r->getAbajo();
@@ -362,7 +334,6 @@ class Multilista
     function contadorLibroXEditorial($editorial)
     {
 
-        //$p = $this->ptr;
         $cont = 0;
         $cant = 0;
         $dato = $this->editorialVacia($editorial);
@@ -385,4 +356,49 @@ class Multilista
         
         
     }
+
+    function validateIdNoRepeatEditorial($id){
+        $p = $this->ptr;
+        $cuantos = 0;
+        while($p != null){
+            if ($p->getIdEditorial() == $id) {
+               $cuantos = $cuantos + 1;
+            }
+            
+            $p = $p->getSig();
+        }
+
+        if ($cuantos >= 1) {
+           $mds = "no valido";
+        } else {
+           $mds = "valido";
+        }
+        
+        return $mds;
+
+    }
+
+    function validateIdNoRepeatLibro($ne,$id){
+
+        $n = $ne->getAbajo();
+        $cuantos2 = 0;
+        while ($n != null ) {
+           
+            if ($n->getIdLibro() == $id) {
+                $cuantos2 =  $cuantos2 +1;
+            } 
+            
+            $n = $n->getAbajo();
+        }
+
+        if ($cuantos2 >= 1) {
+            $mds = "no valido";
+         } else {
+            $mds = "valido";
+         }
+         
+         return $mds;
+        
+    }
+
 }

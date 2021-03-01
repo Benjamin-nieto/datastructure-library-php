@@ -87,7 +87,7 @@ function phpAlert($msg)
                     <form method="post">
 
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="txtSearch" name="txtSearch">
+                                <input class="mdl-textfield__input" type="number" id="txtSearch" name="txtSearch">
                                 <label class="mdl-textfield__label" for="txtSearch">Id Editorial</label>
                                 </div>
                                 <input type="submit" value="Buscar" name="btn-seach1" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
@@ -157,7 +157,7 @@ function phpAlert($msg)
                     echo ' </select></div>      
 
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                               <input class="mdl-textfield__input" type="text" id="txtSeachLibro" name="txtSeachLibro">
+                                               <input class="mdl-textfield__input" type="number" id="txtSeachLibro" name="txtSeachLibro">
                                                <label class="mdl-textfield__label" for="txtSeachLibro">Id Libro</label>
                                                </div>
                                                <input type="submit" value="Buscar" name="btn-seach2" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
@@ -212,7 +212,7 @@ function phpAlert($msg)
                                    <form method="post">
                
                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                               <input class="mdl-textfield__input" type="text" id="txtDelete" name="txtDelete">
+                                               <input class="mdl-textfield__input" type="number" id="txtDelete" name="txtDelete">
                                                <label class="mdl-textfield__label" for="txtDelete">Id Editorial</label>
                                                </div>
                                                <input type="submit" value="Eliminar" name="btn-delete1" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
@@ -307,7 +307,7 @@ function phpAlert($msg)
 
                     echo ' </select></div>
                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                               <input class="mdl-textfield__input" type="text" id="txtDeleteLibro" name="txtDeleteLibro">
+                                               <input class="mdl-textfield__input" type="number" id="txtDeleteLibro" name="txtDeleteLibro">
                                                <label class="mdl-textfield__label" for="txtDeleteLibro">Id Libro</label>
                                                </div>
                                                <input type="submit" value="Eliminar Libro" name="btn-deletel2" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
@@ -329,7 +329,6 @@ function phpAlert($msg)
                             } else {
                                 echo "Libro no eliminada validar datos";
                             }
-                            //echo "Id Editorial: " . $nodoSeach->getIdEditorial() . " Denominacion: " . $nodoSeach->getDenominacion();
                         } else {
                             phpAlert("Validar selecion de editorial y editorial del libro a eliminar");
                         }
@@ -359,7 +358,7 @@ function phpAlert($msg)
                                    <form method="post">
                
                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                               <input class="mdl-textfield__input" type="text" id="txtAnho" name="txtAnho">
+                                               <input class="mdl-textfield__input" type="number" id="txtAnho" name="txtAnho">
                                                <label class="mdl-textfield__label" for="txtAnho">Año Especifico</label>
                                                </div>
                                                <input type="submit" value="Buscar Cantidad" name="btn-seach-x-anho" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">                                              
@@ -437,9 +436,7 @@ function phpAlert($msg)
 
                                 echo "Error encontrando editorial";
                             }
-                           
-                            // echo "No se encontro ningun libro en esa editorial";
-                            
+                                                       
                         } else {
                             phpAlert("Error al selecionar editorial, valide que debe existir alguna editorial");
                         }
@@ -472,7 +469,7 @@ function phpAlert($msg)
 
                 <form method="post">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="idEditorial" name="idEditorial">
+                        <input class="mdl-textfield__input" type="number" id="idEditorial" name="idEditorial">
                         <label class="mdl-textfield__label" for="idEditorial">Id Editorial</label>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -492,9 +489,13 @@ function phpAlert($msg)
                     if ($id == null || $deno == null) {
                         phpAlert("No se puede crear una editorial sin [ID]] ni [Denominacion].");
                     } else {
-                        $n = new nodoEditorial($id, $deno);
-                        $_SESSION["multi"]->agregarEditorial($n);
-                        //echo "Se creo la editorial: ".$deno;
+                       $va =  $_SESSION["multi"]->validateIdNoRepeatEditorial($id);
+                       if ($va == "no valido") {
+                        phpAlert("No se puede repetir id de la editorial");
+                       } else {
+                           $n = new nodoEditorial($id, $deno);
+                           $_SESSION["multi"]->agregarEditorial($n);
+                       } 
                     }
                 }
                 ?>
@@ -504,7 +505,7 @@ function phpAlert($msg)
                     <h4>Creacion de libros</h4>
                     <form method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="idLibro" name="idLibro">
+                            <input class="mdl-textfield__input" type="number" id="idLibro" name="idLibro">
                             <label class="mdl-textfield__label" for="idLibro">Id Libro</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -520,11 +521,11 @@ function phpAlert($msg)
                             <label class="mdl-textfield__label" for="pais">Pais</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="anho" name="anho">
+                            <input class="mdl-textfield__input" type="number" id="anho" name="anho">
                             <label class="mdl-textfield__label" for="anho">Año de edicion</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="cant" name="cant">
+                            <input class="mdl-textfield__input" type="number" id="cant" name="cant">
                             <label class="mdl-textfield__label" for="nat">Cantidad</label>
                         </div>
                         <div style="height: 40px; display: flex;">
@@ -552,18 +553,22 @@ function phpAlert($msg)
                             $can = $_POST["cant"];
                             $sele = $_POST["select-edito"];
 
-
                             $option = isset($_POST['select-edito']) ? $_POST['select-edito'] : false;
                             if ($option == true && $option != "null") {
-
-                                // |$tit==null||$an==null||$can==null
                                 if ($il == "" || $tit == "" || $an == "" || $can == "") {
                                     phpAlert("Validar Id libro, Titulo, Año de edicion o Cantidad ninguno puede ser nulo");
                                 } else {
                                     $nl = new nodoLibro($il, $tit, $aut, $pa, $an, $can);
                                     $nodoe = $_SESSION["multi"]->buscarEditorial($sele);
-                                    // echo $sele."nodo".$nodoe->$getIdEditorial();
-                                    $_SESSION["multi"]->agregarLibro($nodoe, $nl);
+
+                                   $valida_il = $_SESSION["multi"]->validateIdNoRepeatLibro($nodoe,$il);
+                                 
+                                    if ($valida_il == "valido") {
+                                        $_SESSION["multi"]->agregarLibro($nodoe, $nl);
+                                    } else {
+                                       phpAlert("No puede repetir identificadores para esta editorial");
+                                    }
+                                    
                                 }
 
                                 $il = null;

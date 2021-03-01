@@ -8,14 +8,6 @@ class nodoEditorial
     private $sig;
     private $abajo;
 
-    /*public function __construct()
-    {
-        $this->idEditorial = null;
-        $this->denominacion = null;
-        $this->ant = null;
-        $this->sig = null;
-        $this->abajo = null;
-    }*/
     public function __construct($i,$d)
     {
         $this->idEditorial = $i;

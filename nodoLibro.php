@@ -10,17 +10,6 @@ class nodoLibro
     private $cant;
     private $abajo;
  
-   /* function __construct()
-    {
-        $this->idLibro = null;
-        $this->titulo = null;
-        $this->autor = null;
-        $this->pais = null;
-        $this->anho = null;
-        $this->cant = null;
-        $this->abajo = null;
-    }*/
-
     function __construct($i, $t, $a, $p, $an, $ca)
     {
         $this->idLibro = $i;
