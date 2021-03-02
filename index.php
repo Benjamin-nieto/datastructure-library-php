@@ -4,7 +4,7 @@ include("multilistas.php");
 include("nodoLibro.php");
 
 session_start();
-
+  
 if (isset($_SESSION["multi"]) == false) {
     ##echo "no existia y se creo";
     $_SESSION["multi"] = new Multilista();
